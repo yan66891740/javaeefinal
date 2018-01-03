@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.UserDao">
+	<insert id="addUser" parameterType="User">
+		INSERT INTO
+			users(username, password, type)
+		VALUES
+			(#{username}, #{password}, #{type})
+	</insert>
+	
+	<delete id="delUser" parameterType="int">
+		DELETE FROM
+			users
+		WHERE
+			u_id = #{id}
+	</delete>
+		
+	<update id="updateUser" parameterType="User">
+		UPDATE 
+			users 
+		SET
+			password = #{password}, type = #{type}
+		WHERE
+			u_id = #{uId}
+	</update>
+
+	<select id="queryByUsername" parameterType="String" resultType="User">
+		SELECT 
+			* 
+		FROM 
+			users 
+		WHERE 
+			username = #{username}
+	</select>
+</mapper>
