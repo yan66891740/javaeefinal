@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.PositionDao">
+	<insert id="addPost" parameterType="Position">
+		INSERT INTO
+			position(p_id, p_name, p_createdate, d_id)
+		VALUES
+			(#{pId}, #{pName}, #{pCreatedate}, #{dept.dId})
+	</insert>
+	
+	<delete id="delPost" parameterType="int">
+		DELETE FROM
+			position
+		WHERE
+			p_id = #{id}
+	</delete>
+		
+	<update id="updatePost" parameterType="String">
+		UPDATE 
+			position 
+		SET
+			p_name = #{pName}
+		WHERE
+			p_id = #{pId}
+	</update>
+
+	<select id="queryById" parameterType="int" resultType="Department">
+		SELECT 
+			* 
+		FROM 
+			position 
+		WHERE 
+			p_id = #{id}
+	</select>
+	
+	<select id="queryByDeptId" parameterType="int" resultType="Department">
+		SELECT 
+			* 
+		FROM 
+			position
+		WHERE
+			d_id = #{id}
+	</select>
+</mapper>
