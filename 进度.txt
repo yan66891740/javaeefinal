@@ -1,4 +1,14 @@
-01.03£º
+01.03 16:00
 entity:User/Employee/Department/Position
 dao:User
 Mapping:User
+
+01.04 09:00
+dao:Department/Position
+Mapping:Department/Position
+
+01.04 16:00
+dao:Department/Position(update)
+Mapping:Department/Position(update)
+Controller:UserController
+jsp:index(login&register)/showUserInfo
