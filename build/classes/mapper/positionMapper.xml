@@ -40,6 +40,8 @@
 			position
 		WHERE
 			d_id = #{id}
+		ORDER BY
+			p_id;
 	</select>
 	
 	<resultMap type="Position" id="resultMapPosition">

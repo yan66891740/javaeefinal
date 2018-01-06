@@ -18,4 +18,9 @@ public class UserServiceImpl implements UserService{
 		return userDao.queryByUsername(username);
 	}
 
+	@Override
+	public int addUser(User user) {
+		return userDao.addUser(user);
+	}
+
 }

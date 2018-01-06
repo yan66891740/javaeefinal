@@ -14,6 +14,6 @@ public interface PositionDao {
 	
 	public Position queryById(int id);
 	
-	public List<Position> queryByDeptId();
+	public List<Position> queryByDeptId(int id);
 
 }

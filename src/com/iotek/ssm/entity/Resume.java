@@ -1,11 +1,9 @@
 package com.iotek.ssm.entity;
 
-import java.util.Date;
-
-public class Employee {
+public class Resume {
 	
-	private int eId;
-	private String eName;
+	private int rId;
+	private String rName;
 	private String gender;
 	private int age;
 	private String edu;
@@ -14,19 +12,22 @@ public class Employee {
 	private Department dept;
 	private Position post;
 	private String politicalStatus;
-	private Date hiredate;
+	private String lastWork;
+	private double workYears;
+	private String salary;
 	private String hobby;
 	private int uId;
 	
-	public Employee() {
+	public Resume() {
 		super();
 	}
 
-	public Employee(int eId, String eName, String gender, int age, String edu, String tel, String email,
-			Department dept, Position post, String politicalStatus, Date hiredate, String hobby, int uId) {
+	public Resume(int rId, String rName, String gender, int age, String edu, String tel, String email, Department dept,
+			Position post, String politicalStatus, String lastWork, double workYears, String salary, String hobby,
+			int uId) {
 		super();
-		this.eId = eId;
-		this.eName = eName;
+		this.rId = rId;
+		this.rName = rName;
 		this.gender = gender;
 		this.age = age;
 		this.edu = edu;
@@ -35,25 +36,27 @@ public class Employee {
 		this.dept = dept;
 		this.post = post;
 		this.politicalStatus = politicalStatus;
-		this.hiredate = hiredate;
+		this.lastWork = lastWork;
+		this.workYears = workYears;
+		this.salary = salary;
 		this.hobby = hobby;
 		this.uId = uId;
 	}
 
-	public int geteId() {
-		return eId;
+	public int getrId() {
+		return rId;
 	}
 
-	public void seteId(int eId) {
-		this.eId = eId;
+	public void setrId(int rId) {
+		this.rId = rId;
 	}
 
-	public String geteName() {
-		return eName;
+	public String getrName() {
+		return rName;
 	}
 
-	public void seteName(String eName) {
-		this.eName = eName;
+	public void setrName(String rName) {
+		this.rName = rName;
 	}
 
 	public String getGender() {
@@ -120,12 +123,28 @@ public class Employee {
 		this.politicalStatus = politicalStatus;
 	}
 
-	public Date getHiredate() {
-		return hiredate;
+	public String getLastWork() {
+		return lastWork;
 	}
 
-	public void setHiredate(Date hiredate) {
-		this.hiredate = hiredate;
+	public void setLastWork(String lastWork) {
+		this.lastWork = lastWork;
+	}
+
+	public double getWorkYears() {
+		return workYears;
+	}
+
+	public void setWorkYears(double workYears) {
+		this.workYears = workYears;
+	}
+
+	public String getSalary() {
+		return salary;
+	}
+
+	public void setSalary(String salary) {
+		this.salary = salary;
 	}
 
 	public String getHobby() {
@@ -146,9 +165,10 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [eId=" + eId + ", eName=" + eName + ", gender=" + gender + ", age=" + age + ", edu=" + edu
+		return "Resume [rId=" + rId + ", rName=" + rName + ", gender=" + gender + ", age=" + age + ", edu=" + edu
 				+ ", tel=" + tel + ", email=" + email + ", dept=" + dept + ", post=" + post + ", politicalStatus="
-				+ politicalStatus + ", hiredate=" + hiredate + ", hobby=" + hobby + ", uId=" + uId + "]";
+				+ politicalStatus + ", lastWork=" + lastWork + ", workYears=" + workYears + ", salary=" + salary
+				+ ", hobby=" + hobby + ", uId=" + uId + "]";
 	}
 
 }

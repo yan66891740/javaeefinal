@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.ResumeDao">
+	<insert id="addResume" parameterType="Resume">
+		INSERT INTO
+			resume(r_name, gender, age, edu, tel, email, d_id, p_id, political_status, last_work, work_years, 
+			salary, hobby, u_id)
+		VALUES
+			(#{eName}, #{gender}, #{age}, #{edu}, #{tel}, #{email}, #{dept.dId}, #{post.pId}, #{politicalStatus}, 
+			#{lastWork}, #{workYears}, #{salary}, #{hobby}, #{uId})
+	</insert>
+	
+	<delete id="delResume" parameterType="int">
+		DELETE FROM
+			resume
+		WHERE
+			u_id = #{id}
+	</delete>
+		
+	<update id="updateResume" parameterType="Resume">
+		UPDATE 
+			resume 
+		SET
+			r_name = #{rName}, gender = #{gender}, age = #{age}, edu = #{edu}, tel = #{tel}, email = #{email}, 
+			d_id = #{dept.dId}, p_id = #{post.pId}, political_status = #{politicalStatus}, last_work = #{lastWork}, 
+			work_years = #{workYears}, salary = #{salary}, hobby = #{hobby}
+		WHERE
+			u_id = #{uId}
+	</update>
+
+	<select id="queryById" parameterType="int" resultMap="resultMapResume">
+		SELECT 
+			* 
+		FROM 
+			resume 
+		WHERE 
+			u_id = #{id}
+	</select>
+	
+	<select id="queryAll" resultMap="resultMapResume">
+		SELECT 
+			* 
+		FROM 
+			resume 
+	</select>
+	
+	<resultMap type="Resume" id="resultMapResume">
+		<id property="rId" column="r_id"/>
+		<result property="rName" column="r_name"/>
+		<result property="gender" column="gender"/>
+		<result property="age" column="age"/>
+		<result property="edu" column="edu"/>
+		<result property="tel" column="tel"/>
+		<result property="email" column="email"/>
+		<result property="politicalStatus" column="political_status"/>
+		<result property="lastWork" column="last_work"/>
+		<result property="workYears" column="work_years"/>
+		<result property="salary" column="salary"/>
+		<result property="hobby" column="hobby"/>
+		<result property="uId" column="u_id"/>
+		<association property="department" javaType="Department">
+			<id property="dId" column="d_id"/>
+			<result property="dName" column="d_name"/>
+			<result property="dCreatetime" column="d_createtime"/>
+		</association>
+		<association property="position" javaType="Position">
+			<id property="pId" column="p_id"/>
+			<result property="pName" column="p_name"/>
+			<result property="pCreatetime" column="p_createtime"/>
+		</association>
+	</resultMap>
+</mapper>

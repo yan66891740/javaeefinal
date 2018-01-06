@@ -4,8 +4,8 @@ import com.iotek.ssm.entity.User;
 
 public interface UserService {
 
-	User queryUserByUsername(String username);
+	public User queryUserByUsername(String username);
 	
-	
+	public int addUser(User user);
 
 }

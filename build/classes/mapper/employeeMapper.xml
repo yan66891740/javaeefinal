@@ -3,20 +3,20 @@
 <mapper namespace="com.iotek.ssm.dao.EmployeeDao">
 	<insert id="addEmp" parameterType="Employee">
 		INSERT INTO
-			employee(e_name, gender, age, edu, tel, email, d_id, p_id, political_status, hiredate, hobby)
+			employee(e_name, gender, age, edu, tel, email, d_id, p_id, political_status, hiredate, hobby, u_id)
 		VALUES
 			(#{eName}, #{gender}, #{age}, #{edu}, #{tel}, #{email}, #{dept.dId}, #{post.pId}, 
-			#{politicalStatus}, #{hiredate}, #{hobby})
+			#{politicalStatus}, #{hiredate}, #{hobby}, #{uId})
 	</insert>
 	
 	<delete id="delUser" parameterType="int">
 		DELETE FROM
 			employee
 		WHERE
-			e_id = #{id}
+			u_id = #{id}
 	</delete>
 		
-	<update id="updateUser" parameterType="User">
+	<update id="updateUser" parameterType="Employee">
 		UPDATE 
 			employee 
 		SET
@@ -32,7 +32,7 @@
 		FROM 
 			employee 
 		WHERE 
-			e_id = #{id}
+			u_id = #{id}
 	</select>
 	
 	<select id="queryByDeptId" parameterType="int" resultMap="resultMapEmployee">
@@ -64,6 +64,7 @@
 		<result property="politicalStatus" column="political_status"/>
 		<result property="hiredate" column="hiredate"/>
 		<result property="hobby" column="hobby"/>
+		<result property="uId" column="u_id"/>
 		<association property="department" javaType="Department">
 			<id property="dId" column="d_id"/>
 			<result property="dName" column="d_name"/>

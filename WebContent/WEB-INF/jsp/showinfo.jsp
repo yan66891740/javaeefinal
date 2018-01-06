@@ -59,6 +59,10 @@
 				<td>爱好</td>
 				<td><input type="text" name="hobby" value="${requestScope.user.hobby}"></td>
 			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="保存"></td>
+				<td colspan="2"><input type="button" value="返回"></td>
+			</tr>
 		</table>
 	</form>
 </body>

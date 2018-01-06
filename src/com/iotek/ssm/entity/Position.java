@@ -11,6 +11,13 @@ public class Position {
 		super();
 	}
 
+	public Position(int pId, String pName, String pCreatetime) {
+		super();
+		this.pId = pId;
+		this.pName = pName;
+		this.pCreatetime = pCreatetime;
+	}
+
 	public Position(int pId, String pName, String pCreatetime, Department dept) {
 		super();
 		this.pId = pId;

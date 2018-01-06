@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.iotek.ssm.entity.User;
 import com.iotek.ssm.service.UserService;
 
-@RequestMapping("user")
+@RequestMapping("/user")
 @Controller("userController")
 public class UserController {
 	
