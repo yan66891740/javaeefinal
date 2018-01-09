@@ -12,3 +12,9 @@ dao:Department/Position(update)
 Mapping:Department/Position(update)
 Controller:UserController
 jsp:index(login&register)/showUserInfo
+
+01.09 16:00
+dao:Resume/Recruitment/Interview
+Mapping:Resume/Recruitment
+Controller:UserController/ResumeController
+jsp:tourist/resume

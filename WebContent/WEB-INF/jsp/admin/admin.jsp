@@ -12,13 +12,14 @@
 </script>
 </head>
 <body>
-	&nbsp;&nbsp;&nbsp;当前用户：${sessionScope.user.username}
-	<div>
-		<a href="${pageContext.request.contextPath}/">反馈</a>
-		<a href="${pageContext.request.contextPath}/">查看简历</a>
-		<a href="${pageContext.request.contextPath}/">修改密码</a>
-		<a href="${pageContext.request.contextPath}/">其他</a>
-		<a href="${pageContext.request.contextPath}/">退出</a>
-	</div>
+	发布招聘
+	应聘管理
+	部门职位
+	培训管理
+	员工管理
+	奖罚管理
+	薪资管理
+	工资异议
+	退出
 </body>
 </html>

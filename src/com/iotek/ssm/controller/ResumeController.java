@@ -39,7 +39,7 @@ public class ResumeController {
 		}
 		model.addAttribute("resume", resume);
 		model.addAttribute("depts", depts);
-		return "resume";
+		return "tourist/resume";
 	}
 	
 	@RequestMapping
@@ -81,7 +81,7 @@ public class ResumeController {
 			resume.setHobby(hobby);
 			resumeService.updateResume(resume);
 		}
-		return "tourist";
+		return "tourist/tourist";
 	}
 
 }

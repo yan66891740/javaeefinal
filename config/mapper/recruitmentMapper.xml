@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.RecruitmentDao">
+	<insert id="addRecruitment" parameterType="Recruitment">
+		INSERT INTO
+			recruitment(d_id, p_id, info, create_date, type)
+		VALUES
+			(#{#{dId}, #{pId}, #{info}, #{createDate}, #{type})
+	</insert>
+	
+	<delete id="delRecruitment" parameterType="int">
+		DELETE FROM
+			recruitment
+		WHERE
+			re_id = #{reId}
+	</delete>
+		
+	<update id="updateRecruitment" parameterType="Recruitment">
+		UPDATE 
+			recruitment 
+		SET
+			d_id = #{dId}, p_id = #{pId}, info = #{info}, type = #{type}
+		WHERE
+			re_id = #{reId}
+	</update>
+	
+	<select id="queryAllDept" resultMap="resultMapRecruitment">
+		SELECT 
+			* 
+		FROM 
+			recruitment 
+		ORDER BY
+			re_id;
+	</select>
+	
+	<resultMap type="Recruitment" id="resultMapRecruitment">
+		<id property="reId" column="re_id"/>
+		<result property="info" column="info"/>
+		<result property="createDate" column="create_date"/>
+		<result property="type" column="type"/>
+		<association property="dept" javaType="Department">
+			<id property="dId" column="d_id"/>
+			<result property="dName" column="d_name"/>
+			<result property="dCreatetime" column="d_createtime"/>
+		</association>
+		<association property="post" javaType="Position">
+			<id property="pId" column="p_id"/>
+			<result property="pName" column="p_name"/>
+			<result property="pCreatetime" column="p_createtime"/>
+		</association>
+	</resultMap>
+</mapper>

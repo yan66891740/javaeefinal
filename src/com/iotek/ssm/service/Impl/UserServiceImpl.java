@@ -23,4 +23,9 @@ public class UserServiceImpl implements UserService{
 		return userDao.addUser(user);
 	}
 
+	@Override
+	public int update(User user) {
+		return userDao.updateUser(user);
+	}
+
 }

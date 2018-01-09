@@ -8,4 +8,6 @@ public interface UserService {
 	
 	public int addUser(User user);
 
+	public int update(User user);
+
 }
