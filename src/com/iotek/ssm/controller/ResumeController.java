@@ -1,5 +1,6 @@
 package com.iotek.ssm.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,10 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.iotek.ssm.entity.Department;
+import com.iotek.ssm.entity.Interview;
 import com.iotek.ssm.entity.Position;
 import com.iotek.ssm.entity.Resume;
 import com.iotek.ssm.entity.User;
 import com.iotek.ssm.service.DepartmentService;
+import com.iotek.ssm.service.InterviewService;
 import com.iotek.ssm.service.PositionService;
 import com.iotek.ssm.service.ResumeService;
 
@@ -28,6 +31,8 @@ public class ResumeController {
 	private DepartmentService departmentService;
 	@Autowired
 	private PositionService positionService;
+	@Autowired
+	private InterviewService interviewService;
 	
 	@RequestMapping("queryResume")
 	public String queryResume(Model model, Integer id) {
@@ -45,7 +50,10 @@ public class ResumeController {
 	@RequestMapping
 	public String updateResume(HttpServletRequest req, HttpSession session) {
 		int uId = ((User)session.getAttribute("user")).getuId();
+		//查询简历是否存在
 		Resume resume = resumeService.queryByUid(uId);
+		//查询面试申请是否存在
+		Interview interview = interviewService.queryById(uId);
 		
 		String rName = req.getParameter("rName");
 		String gender = req.getParameter("gender");
@@ -81,6 +89,12 @@ public class ResumeController {
 			resume.setHobby(hobby);
 			resumeService.updateResume(resume);
 		}
+		
+		if(interview == null || interview.getEmploy().equals("不录用")) {
+			interview = new Interview(0,uId,rName,new Department(dId, null, null),new Date(),"未查看","未面试",null,"未录用");
+			interviewService.addInterview(interview);
+		}
+		
 		return "tourist/tourist";
 	}
 

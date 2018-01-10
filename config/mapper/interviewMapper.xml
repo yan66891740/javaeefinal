@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.InterviewDao">
+	<insert id="addInterview" parameterType="Interview">
+		INSERT INTO
+			interview(u_id, name, d_id, create_time, check, audition, for_inter, employ)
+		VALUES
+			(#{uId}, #{name}, #{dept.dId}, #{createTime}, #{check}, #{audition}, #{forInter}, #{employ})
+	</insert>
+	
+	<delete id="delInterview" parameterType="int">
+		DELETE FROM
+			interview
+		WHERE
+			i_id = #{iId}
+	</delete>
+		
+	<update id="updateInterview" parameterType="Interview">
+		UPDATE 
+			interview 
+		SET
+			u_id = #{uId}, name = #{name}, d_id = #{dept.dId}, create_time = #{createTime}, check = #{check}, audition = #{audition}, 
+			for_inter = #{forInter}, employ = #{employ}
+		WHERE
+			u_id = #{id};
+	</update>
+	
+	<select id="queryById" parameterType="int" resultMap="resultMapInterview">
+		SELECT 
+			* 
+		FROM 
+			interview
+		WHERE
+			u_id = #{id};
+	</select>
+	
+	<select id="queryAll" resultMap="resultMapInterview">
+		SELECT 
+			* 
+		FROM 
+			interview 
+		ORDER BY
+			i_id;
+	</select>
+	
+	<resultMap type="Interview" id="resultMapInterview">
+		<id property="iId" column="i_id"/>
+		<result property="name" column="name"/>
+		<result property="createTime" column="create_time"/>
+		<result property="check" column="check"/>
+		<result property="audition" column="audition"/>
+		<result property="forInter" column="for_inter"/>
+		<result property="employ" column="employ"/>
+		<association property="dept" javaType="Department">
+			<id property="dId" column="d_id"/>
+			<result property="dName" column="d_name"/>
+			<result property="dCreatetime" column="d_createtime"/>
+		</association>
+	</resultMap>
+</mapper>

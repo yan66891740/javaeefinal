@@ -5,7 +5,7 @@
 		INSERT INTO
 			recruitment(d_id, p_id, info, create_date, type)
 		VALUES
-			(#{#{dId}, #{pId}, #{info}, #{createDate}, #{type})
+			(#{dept.dId}, #{post.pId}, #{info}, #{createDate}, #{type})
 	</insert>
 	
 	<delete id="delRecruitment" parameterType="int">
@@ -24,7 +24,7 @@
 			re_id = #{reId}
 	</update>
 	
-	<select id="queryAllDept" resultMap="resultMapRecruitment">
+	<select id="queryAll" resultMap="resultMapRecruitment">
 		SELECT 
 			* 
 		FROM 
