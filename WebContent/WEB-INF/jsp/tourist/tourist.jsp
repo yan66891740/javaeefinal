@@ -13,10 +13,10 @@
 			var np2 = $(this).val();
 			var np1 = $("input[name='newpassword']").val();
 			if(np2 != np1){
-				$("input['sub1']").disabled(true);
+				$("input[name='sub1']").disabled(true);
 				alert("两次密码不匹配")
 			}else{
-				$("input['sub1']").disabled(false);
+				$("input[name='sub1']").disabled(false);
 			}
 		});
 		
@@ -28,10 +28,10 @@
 				datatype:"text",
 				success:function(msg){
 					if(msg == "error"){
-						$("input['sub1']").disabled(true);
+						$("input[name='sub1']").disabled(true);
 						alert("密码有误");
 					}else{
-						$("input['sub1']").disabled(false);
+						$("input[name='sub1']").disabled(false);
 					}
 				}
 			});

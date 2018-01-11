@@ -16,4 +16,6 @@ public interface DepartmentDao {
 	
 	public List<Department> queryAllDept();
 
+	public Department queryByName(String name);
+
 }

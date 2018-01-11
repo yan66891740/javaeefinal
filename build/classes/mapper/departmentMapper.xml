@@ -33,6 +33,15 @@
 			d_id = #{id}
 	</select>
 	
+	<select id="queryByName" parameterType="String" resultType="Department">
+		SELECT 
+			* 
+		FROM 
+			department 
+		WHERE 
+			d_name = #{name}
+	</select>
+	
 	<select id="queryAllDept" resultType="Department">
 		SELECT 
 			* 

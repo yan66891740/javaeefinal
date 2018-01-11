@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.iotek.ssm.entity.Interview;
 import com.iotek.ssm.entity.User;
+import com.iotek.ssm.service.InterviewService;
 import com.iotek.ssm.service.UserService;
 import com.iotek.ssm.util.App;
 
@@ -20,6 +22,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private InterviewService interviewService;
 	
 	@RequestMapping(value = "checkName", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	@ResponseBody
@@ -55,35 +59,45 @@ public class UserController {
 		return "tourist/tourist";
 	}
 	
-	@RequestMapping("addUser")
-	public String addUser(Model model, HttpServletRequest req) {
+	@RequestMapping(value = "register", method = RequestMethod.POST)
+	public String register(Model model, HttpServletRequest req) {
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
 		//type = 1：游客  2：员工  3：经理  0：管理员
 		int res = userService.addUser(new User(0,username,App.md5(password),1));
 		if(res > 0) {
-			model.addAttribute("msg1","恭喜您，注册成功！");
+			model.addAttribute("msg1","恭喜您，注册成功");
 			model.addAttribute("msg2","返回登录");
 			model.addAttribute("address","index.jsp");
 			return "tourist/wait";
 		}else {
-			model.addAttribute("msg", "注册失败！");
+			model.addAttribute("msg", "注册失败");
 			return "redirect:index";
 		}
 	}
 	
-	@RequestMapping("login")
+	@RequestMapping(value = "login", method = RequestMethod.POST)
 	public String login(HttpSession session, Model model, String username, String password) {
 		User user = userService.queryUserByUsername(username);
 		if(user != null && App.md5(password).equals(user.getPassword())) {
 			model.addAttribute("msg1","恭喜您，登录成功！");
 			model.addAttribute("msg2","进入个人界面");
 			session.setAttribute("user", user);
+			Interview inter = null;
 			if(user.getType() == 1) {
+				inter = interviewService.queryById(user.getuId());
+				if(inter.getForInter() != null && inter.getEmploy().equals("未录取")) {
+					session.setAttribute("msg", "通知：您有一份面试通知，详情请在 反馈 中查看");
+				}
 				model.addAttribute("address", "tourist/tourist.jsp");
 			}else if(user.getType() == 2) {
 				model.addAttribute("address", "employee/employee.jsp");
 			}else if(user.getType() == 3) {
+				inter = interviewService.queryById(user.getuId());
+				if(inter.getForInter() != null && inter.getEmploy().equals("未录取")) {
+					session.setAttribute("msg", "通知：您有一份面试通知，详情请在 反馈 中查看");
+				}
+				//TODO 培训通知查询显示
 				model.addAttribute("address", "employee/manager.jsp");
 			}else if(user.getType() == 0) {
 				model.addAttribute("address", "employee/admin.jsp");

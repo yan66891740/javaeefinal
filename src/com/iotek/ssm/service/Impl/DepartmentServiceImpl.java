@@ -19,6 +19,11 @@ public class DepartmentServiceImpl implements DepartmentService{
 	public List<Department> queryAll() {
 		return departmentDao.queryAllDept();
 	}
+
+	@Override
+	public Department queryByName(String name) {
+		return departmentDao.queryByName(name);
+	}
 	
 	
 

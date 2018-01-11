@@ -12,7 +12,6 @@
 </script>
 </head>
 <body>
-	发布招聘
 	应聘管理
 	部门职位
 	培训管理
@@ -34,6 +33,7 @@
 					<th colspan="2">操作</th>
 				</tr>
 				<c:forEach items="${requestScore.inters}" var="inter">
+				<c:if test="${inter.check == '未查看'}"></c:if>
 					<tr>
 						<td>${inter.iId}</td>
 						<td>${inter.name}</td>
@@ -50,6 +50,11 @@
 		<c:if test="${requestScore.inters == null}">
 			<h1>暂时没有应聘信息</h1>
 		</c:if>
+		<input type="button" value="添加招聘" onclick="">
+	</div>
+	
+	<div id="addRecruitment">
+		<input >
 	</div>
 	
 	<div>
@@ -109,6 +114,14 @@
 		<input type="button" value="面试" name="addtime">&nbsp;&nbsp;&nbsp;
 		<input type="button" value="返回" onclick="javascript:location='${pageContext.request.contextPath}/adminc/checkInter?id=${requestScope.resume.uId}'">
 	</div>
+	<div>
+	
+	</div>
+	<form action="${pageContext.request.contextPath}/adminc/setForInter" method="post">
+		<input type="hidden" name="uId" value="${requestScope.resume.uId}">
+		<input type="date" name="forInter">
+		<input type="sbumit" value="确定">
+	</form>
 	
 	
 </body>

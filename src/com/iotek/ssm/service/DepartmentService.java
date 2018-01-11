@@ -8,4 +8,6 @@ public interface DepartmentService {
 	
 	public List<Department> queryAll();
 
+	public Department queryByName(String name);
+
 }
