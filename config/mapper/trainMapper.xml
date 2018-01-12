@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.TrainDao">
+	<insert id="addDept" parameterType="Train">
+		INSERT INTO
+			train(name, time, d_id)
+		VALUES
+			(#{name}, #{time}, #{dId})
+	</insert>
+	
+	<delete id="delDept" parameterType="int">
+		DELETE FROM
+			train
+		WHERE
+			t_id = #{id}
+	</delete>
+		
+	<update id="updateDept" parameterType="Train">
+		UPDATE 
+			train 
+		SET
+			name = #{name}, time = #{time}, d_id = #{dId}
+		WHERE
+			t_id = #{tId}
+	</update>
+
+	<select id="queryById" parameterType="int" resultMap="Department">
+		SELECT 
+			* 
+		FROM 
+			train 
+		WHERE 
+			d_id = #{id}
+	</select>
+	
+	<select id="queryAllDept" resultType="Department">
+		SELECT 
+			* 
+		FROM 
+			train 
+		ORDER BY
+			d_id;
+	</select>
+	
+	<resultMap type="train" id="resultMapTrain">
+		<id property="tId" column="t_id"/>
+		<result property="" column=""/>
+		<result property="" column=""/>
+		<result property="" column=""/>
+	</resultMap>
+</mapper>

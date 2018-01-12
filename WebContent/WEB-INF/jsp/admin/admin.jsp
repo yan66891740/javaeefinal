@@ -13,14 +13,13 @@
 </head>
 <body>
 	应聘管理
-	部门职位
-	培训管理
+	<a href="${pageContext.request.contextPath}/adminc/queryDepts">部门职位</a>
+	<a href="${pageContext.request.contextPath}/adminc/queryTrains">培训管理</a>
 	员工管理
 	奖罚管理
 	薪资管理
 	工资异议
 	退出
-	
 	<div>
 		<c:if test="${requestScore.inters != null}">
 			<table>
@@ -105,23 +104,26 @@
 				<td>兴趣爱好</td>
 				<td>${requestScope.resume.hobby}</td>
 			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="保存"></td>
-				<!-- TODO 返回按钮超链接 -->
-				<td colspan="2"><input type="button" value="返回" ></td>
-			</tr>
 		</table>
-		<input type="button" value="面试" name="addtime">&nbsp;&nbsp;&nbsp;
+		<input type="button" value="面试" name="addtime" onclick="addForInter()">&nbsp;&nbsp;&nbsp;
 		<input type="button" value="返回" onclick="javascript:location='${pageContext.request.contextPath}/adminc/checkInter?id=${requestScope.resume.uId}'">
 	</div>
-	<div>
 	
+	<!-- 分配面试到部门 -->
+	<div>
+		<form action="${pageContext.request.contextPath}/adminc/setForInter" method="post">
+			<input type="hidden" name="uId" value="${requestScope.resume.uId}">
+			<input type="date" name="forInter">
+			<input type="sbumit" value="确定">
+		</form>
 	</div>
-	<form action="${pageContext.request.contextPath}/adminc/setForInter" method="post">
-		<input type="hidden" name="uId" value="${requestScope.resume.uId}">
-		<input type="date" name="forInter">
-		<input type="sbumit" value="确定">
-	</form>
+	
+	<!-- 查询所有培训 -->
+	<div>
+		<c:forEach items="">
+		
+		</c:forEach>
+	</div>
 	
 	
 </body>

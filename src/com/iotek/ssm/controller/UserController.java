@@ -77,8 +77,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(HttpSession session, Model model, String username, String password) {
-		User user = userService.queryUserByUsername(username);
+	public String login(HttpSession session, Model model, String name, String password) {
+		User user = userService.queryUserByUsername(name);
 		if(user != null && App.md5(password).equals(user.getPassword())) {
 			model.addAttribute("msg1","恭喜您，登录成功！");
 			model.addAttribute("msg2","进入个人界面");
@@ -95,7 +95,7 @@ public class UserController {
 			}else if(user.getType() == 3) {
 				inter = interviewService.queryById(user.getuId());
 				if(inter.getForInter() != null && inter.getEmploy().equals("未录取")) {
-					session.setAttribute("msg", "通知：您有一份面试通知，详情请在 反馈 中查看");
+					session.setAttribute("msg", "通知：您有一份面试通知，详情请在 通知 中查看");
 				}
 				//TODO 培训通知查询显示
 				model.addAttribute("address", "employee/manager.jsp");

@@ -16,12 +16,7 @@
 				data:{id:id},
 				datatype:"json",
 				success:function(msg){
-					if(msg == "error"){
-						$("input['sub1']").attr("disabled",true);
-						alert("部门已存在");
-					}else{
-						$("input['sub1']").attr("disabled",false);
-					}
+					span
 				}
 			});
 		});

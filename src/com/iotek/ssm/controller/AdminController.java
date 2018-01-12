@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSON;
 import com.iotek.ssm.entity.Department;
 import com.iotek.ssm.entity.Interview;
 import com.iotek.ssm.entity.Position;
@@ -75,8 +75,8 @@ public class AdminController {
 		return "redirect:adminc/showInters";
 	}
 	
-	@RequestMapping("alldepts")
-	public String alldepts(Model model) {
+	@RequestMapping("queryDepts")
+	public String queryDepts(Model model) {
 		List<Department> depts = departmentService.queryAll();
 		model.addAttribute("depts", depts);
 		return "admin/deptpost";
@@ -86,8 +86,8 @@ public class AdminController {
 	@ResponseBody
 	public String queryPost(Model model, Integer id) {
 		List<Position> posts = positionService.queryByDid(id);
-		
-		return "";
+		String json = JSON.toJSONString(posts);
+		return json;
 	}
 	
 	@RequestMapping(value = "checkDeptName",method=RequestMethod.POST)
@@ -99,6 +99,11 @@ public class AdminController {
 		}else {
 			return "success";
 		}
+	}
+	
+	@RequestMapping("queryTrains")
+	public String queryTrains(Model model) {
+		return "";
 	}
 
 }

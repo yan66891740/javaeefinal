@@ -13,25 +13,25 @@
 			var np2 = $(this).val();
 			var np1 = $("input[name='newpassword']").val();
 			if(np2 != np1){
-				$("input[name='sub1']").disabled(true);
+				$("input[name='sub1']").attr(disabled,true);
 				alert("两次密码不匹配")
 			}else{
-				$("input[name='sub1']").disabled(false);
+				$("input[name='sub1']").attr(disabled,false);
 			}
 		});
 		
 		$("input[name='password']").blur(function(){
-			 $.ajax({
+			var password = $(this).val();
+			$.ajax({
 				type:"POST",
 				url:"${pageContext.request.contextPath}/user/checkPassword",
 				data:{password:password},
 				datatype:"text",
 				success:function(msg){
 					if(msg == "error"){
-						$("input[name='sub1']").disabled(true);
-						alert("密码有误");
+						$("input[name='sub1']").attr(disabled,true);
 					}else{
-						$("input[name='sub1']").disabled(false);
+						$("input[name='sub1']").attr(disabled,false);
 					}
 				}
 			});
@@ -41,6 +41,9 @@
 </script>
 </head>
 <body>
+	<c:if test="${sessionScope.msg != null}">
+		alert(sessionScope.msg)
+	</c:if>
 	&nbsp;&nbsp;&nbsp;当前用户：${sessionScope.user.username}
 	<div>
 		<a href="${pageContext.request.contextPath}/">反馈</a>

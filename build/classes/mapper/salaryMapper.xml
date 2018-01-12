@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.ssm.dao.SalaryDao">
+	<insert id="addDept" parameterType="Salary">
+		INSERT INTO
+			department(d_id, d_name, d_createdate)
+		VALUES
+			(#{dId}, #{dName}, #{dCreatedate})
+	</insert>
+	
+	<delete id="delDept" parameterType="int">
+		DELETE FROM
+			department
+		WHERE
+			d_id = #{id}
+	</delete>
+		
+	<update id="updateDept" parameterType="String">
+		UPDATE 
+			department 
+		SET
+			d_name = #{dName}
+		WHERE
+			d_id = #{dId}
+	</update>
+
+	<select id="queryById" parameterType="int" resultType="Department">
+		SELECT 
+			* 
+		FROM 
+			department 
+		WHERE 
+			d_id = #{id}
+	</select>
+	
+	<select id="queryByName" parameterType="String" resultType="Department">
+		SELECT 
+			* 
+		FROM 
+			department 
+		WHERE 
+			d_name = #{name}
+	</select>
+	
+	<select id="queryAllDept" resultType="Department">
+		SELECT 
+			* 
+		FROM 
+			department 
+		ORDER BY
+			d_id;
+	</select>
+</mapper>

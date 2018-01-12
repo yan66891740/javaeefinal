@@ -8,7 +8,25 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="${pageContext.request.contextPath}/JS/jquery-1.7.2.js"></script>
 <script type="text/javascript">
-	
+	$(function(){
+		$("input[name='username']").blur(function(){
+			var username = $(this).val();
+			$.ajax({
+				type:"POST",
+				url:"${pageContext.request.contextPath}/user/checkName",
+				data:{username:username},
+				datatype:"text",
+				success:function(msg){
+					if(msg == "error"){
+						$("input[name='sub1']").attr(disabled,true);
+						alert("密码有误");
+					}else{
+						$("input[name='sub1']").attr(disabled,false);
+					}
+				}
+			});
+		});
+	})
 </script>
 </head>
 <body>
@@ -23,7 +41,7 @@
 						用户名：
 					</td>
 					<td>
-						<input type="text" name="username" placeholder="请输入用户名" required="required">
+						<input type="text" name="name" placeholder="请输入用户名" required="required">
 					</td>
 				</tr>
 				<tr>
@@ -35,11 +53,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2">
 						<input type="submit" value="登录">
-					</td>
-					<td>
-						<input type="button" value="注册" >
 					</td>
 				</tr>
 			</table>
@@ -66,11 +81,8 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
-						<input type="submit" value="登录">
-					</td>
-					<td>
-						<input type="button" value="注册" >
+					<td colspan="2">
+						<input type="button" value="注册" name="sub1">
 					</td>
 				</tr>
 			</table>
